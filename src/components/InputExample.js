@@ -1,18 +1,22 @@
-import { useState } from 'react'
+import { useState } from 'react';
 
 function InputExample() {
-    const [name, setName] = useState('');
-    const [last, setLast] = useState('');
-    const onChangeLast = (event) => setLast(event.target.value);
+    const [form, setForm] = useState({ name: '', last: '' });
+    const onChangeInput = (event) => {
+        setForm({ ...form, [event.target.name]: event.target.value });
+    };
     return (
-        <div>Name <br />
-            <input value={name} onChange={(event) => setName(event.target.value)}></input>
+        <div>Name
             <br />
-            Lastname<br />
-            <input value={last} onChange={onChangeLast}></input>
-            <br /> {name} {last}
+            <input name="name" value={form.name} onChange={onChangeInput} />
+            <br />
+            Lastname
+            <br />
+            <input name="last" value={form.last} onChange={onChangeInput} />
+            <br />
+            {form.name} {form.last}
         </div>
     )
 }
 
-export default InputExample
+export default InputExample;
