@@ -1,25 +1,13 @@
-import { useState, useEffect } from 'react';
+import Counter from './components/Counter';
+import { useState } from 'react';
 
 function App() {
-  const [number, setNumber] = useState(0);
-  const [name, setName] = useState("ihs");
+  const [isVisible, setIsVisible] = useState(true);
 
-  useEffect(() => {
-    console.log("component mount edildi");
-  }, []);
-
-  useEffect(() => {
-    console.log("number state guncellendi");
-  }, [number]);
-  //array bos birakilirsa tum degisimleri; number,name yazilirsa her ikisini kontrol eder.
-  //ayri ayri useEffect ler kullanilirsa ayri ayri kontrol eder
   return (
-    <div className="App">
-      <h2>{number}</h2>
-      <button onClick={() => setNumber(number + 1)} >Up</button>
-      <br />
-      <h2>{name}</h2>
-      <button onClick={() => setName("brky")} >Change</button>
+    <div>
+      {isVisible && <Counter />}
+      <button onClick={() => setIsVisible(!isVisible)}>Toggle</button>
     </div>
   );
 }
